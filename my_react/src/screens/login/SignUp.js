@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import BG from '../Image/BG.jpg';
 
 const SignUp = (props) => {
     const navigate = useNavigate()

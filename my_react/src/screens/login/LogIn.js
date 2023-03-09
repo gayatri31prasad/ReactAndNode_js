@@ -2,10 +2,6 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FaBeer } from 'react-icons/fa';
 import { AiOutlineUserAdd, AiFillGooglePlusCircle, AiFillFacebook, AiFillTwitterCircle } from 'react-icons/ai';
-import BG from '../Image/BG.jpg';
-import nature from '../Image/nature.jpg';
-import N4Knature from '../Image/4KNature.jfif';
-import N4BG from '../Image/4KBG.jfif';
 const img = `https://cdn.pixabay.com/photo/2016/08/11/23/48/mountains-1587287_960_720.jpg`
 
 const LogIn = () => {

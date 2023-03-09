@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { /* BrowserRouter, */ Routes, Route, Outlet, Link } from "react-router-dom";
 import ForgotPass from '../screens/login/ForgotPass';
 import LogIn from '../screens/login/LogIn';
+import LogInSignUp from '../screens/login/LogInSignUp';
 import SignUp from '../screens/login/SignUp';
 
 function Loginstack(props) {
@@ -65,7 +66,7 @@ function Loginstack(props) {
 
     return (
         <Routes>
-            <Route path="/" element={<LogIn />} />
+            <Route path="/" element={<LogInSignUp />/* <LogIn /> */} />
             <Route path="/SignUp" element={<SignUp />} />
             <Route path="/ForgotPass" element={<ForgotPass />} />
             {/* <div>

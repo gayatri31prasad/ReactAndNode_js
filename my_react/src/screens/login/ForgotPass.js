@@ -1,5 +1,5 @@
 import React from 'react';
-import BG from '../Image/BG.jpg';
+import BG from '../image/BG.jpg';
 
 function ForgotPass(props) {
     return (
