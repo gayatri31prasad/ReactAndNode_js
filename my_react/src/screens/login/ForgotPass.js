@@ -1,7 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import BG from '../image/BG.jpg';
 
 function ForgotPass(props) {
+    const navigate = useNavigate()
     return (
         <div
             style={{
@@ -19,6 +21,14 @@ function ForgotPass(props) {
             }}>
             <p style={{ fontFamily: 'fantasy', fontSize: 46, color: '#fff', margin: '0px', textAlign: 'center', marginBottom: 20 }}>ForgotPass</p>
 
+            <button
+                style={{}}
+                onClick={() => {
+                    sessionStorage.removeItem("MyObj")
+                    navigate('/')
+                }}>
+                delete
+            </button>
         </div>
     );
 }

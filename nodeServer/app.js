@@ -1,17 +1,27 @@
 const express = require('express');
 const cors = require('cors')
 const app = express();
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+app.use(express.json()) //pares json data
+app.use(express.urlencoded({ extended: true })) //parse url and encoded data
 const port = 8082;
+
 app.use(cors())
 
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-});
+// code for cors (CORS or Cross-Origin Resource Sharing) error
+
+// app.use((req, res, next) => {
+//     res.header('Access-Control-Allow-Origin', '*');
+//     res.header('Access-Control-Allow-Headers', '*')
+//     if (req.method === 'OPTIONS') {
+//         res.header('Access-Control-Allow-Methods', '*')
+//         return res.status(200).json({})
+//     }
+// })
+
+//start of server url ...................
 
 app.get('/', function (req, res) {
-    res.send(JSON.stringify({ name: 'Rohit Rote', age: '25', gender: 'Mail' }));
+    res.send({ name: 'Rohit Rote', age: '25', gender: 'Mail' });
 });
 
 app.post('/LogIn', (req, res) => {
@@ -29,6 +39,7 @@ app.post('/LogIn', (req, res) => {
         res.send({ SUCCESS: false, MESSAGE: 'No data recive' })
     }
 })
+
 app.post('/newData', (req, res) => {
 
     let data = req?.body

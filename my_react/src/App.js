@@ -1,30 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Loginstack from './navigation/Loginstack';
+import ForgotPass from './screens/login/ForgotPass';
+import { useEffect, useState } from 'react';
 
 function App() {
+
+  const [MyObj, setMyObj] = useState()
+
+  useEffect(() => {
+    try {
+      setMyObj(JSON.parse(sessionStorage.getItem("MyObj")));
+    } catch (err) {
+      console.log('', err);
+    }
+  }, [])
+  console.log('', MyObj);
   return (
     <BrowserRouter>
-      <Loginstack />
-    </BrowserRouter>)
-  {/* <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div> */}
-  // );
+      {MyObj == null ? <Loginstack /> : <ForgotPass />}
+    </BrowserRouter>
+  )
 }
 
 export default App;

@@ -1,75 +1,52 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { /* BrowserRouter, */ Routes, Route, Outlet, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet, Link } from "react-router-dom";
 import ForgotPass from '../screens/login/ForgotPass';
 import LogIn from '../screens/login/LogIn';
 import LogInSignUp from '../screens/login/LogInSignUp';
 import SignUp from '../screens/login/SignUp';
 
 function Loginstack(props) {
-
-    const [MyObj, setMyObj] = useState()
-
-    useEffect(() => {
-        try {
-            fetch(/* `http://172.20.1.68:8082/` */'', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Accept: 'application/json',
-                    // Authorization: 'Bearer ' + token,
-                },
-            },
-            )
-                .then(response => response.json())
-                .then(res => {
-                    console.log('get............', JSON.stringify(res));
-                    if (res.SUCCESS) {
-                        // setPastApp(res.DATA)
-                    }
-                })
-                .catch(err => {
-                    console.log('get............ err1', err);
-                })
-        } catch (err) {
-            console.log('err.........', err);
+    /* 
+        const [MyObj, setMyObj] = useState()
+    
+        const setSeccion = () => {
+            try {
+                // localStorage.setItem('','')
+                sessionStorage.setItem("MyObj", JSON.stringify({ name: 'Gayatry Prasad', age: '23', gender: 'Mail' }));
+            } catch (err) {
+                console.log('', err);
+            }
+            alert('seccion added.....')
         }
-    }, [])
-
-    const setSeccion = () => {
-        try {
-            // localStorage.setItem('','')
-            sessionStorage.setItem("MyObj", JSON.stringify({ name: 'Gayatry Prasad', age: '23', gender: 'Mail' }));
-        } catch (err) {
-            console.log('', err);
+    
+        const getSeccion = () => {
+            try {
+                setMyObj(JSON.parse(sessionStorage.getItem("MyObj")));
+            } catch (err) {
+                console.log('', err);
+            }
         }
-        alert('seccion added.....')
-    }
-
-    const getSeccion = () => {
-        try {
-            setMyObj(JSON.parse(sessionStorage.getItem("MyObj")));
-        } catch (err) {
-            console.log('', err);
+    
+        const removeSeccion = () => {
+            try {
+                sessionStorage.removeItem("MyObj")
+                //sessionStorage.clear() clear all session
+            } catch (err) {
+                console.log('', err);
+            }
+            alert('remove seccion .....')
         }
-    }
-
-    const removeSeccion = () => {
-        try {
-            sessionStorage.removeItem("MyObj")
-            //sessionStorage.clear() clear all session
-        } catch (err) {
-            console.log('', err);
-        }
-        alert('remove seccion .....')
-    }
-
+     */
     return (
         <Routes>
-            <Route path="/" element={<LogInSignUp />/* <LogIn /> */} />
+            <Route path="/" element={<LogInSignUp />} />
+            {/* <Route path="/LogInOld" element={<LogIn />} />
             <Route path="/SignUp" element={<SignUp />} />
-            <Route path="/ForgotPass" element={<ForgotPass />} />
-            {/* <div>
+            <Route path="/ForgotPass" element={<ForgotPass />} /> */}
+        </Routes>
+    );
+    {/* <div>
                     <nav>
                         <ul>
                             <li>
@@ -86,7 +63,7 @@ function Loginstack(props) {
                     <Outlet />
                 </div> */}
 
-            {/* <Route index element={
+    {/* <Route index element={
                     <body style={{ alignItems: 'center' }}>
                         <h1>Home</h1>
                         <p>this is index page</p>
@@ -114,8 +91,6 @@ function Loginstack(props) {
                         <Link to='/' onClick={() => { removeSeccion() }} >Home</Link>
                     </body>} />
             </Route> */}
-        </Routes>
-    );
 }
 
 export default Loginstack;

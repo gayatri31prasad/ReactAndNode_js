@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 // import { FaBeer } from 'react-icons/fa';
 import { AiOutlineUserAdd, AiFillGooglePlusCircle, AiFillFacebook, AiFillTwitterCircle, AiOutlineUser, AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 
@@ -59,6 +59,8 @@ const PasswordInput = ({
 }
 
 const LogInSignUp = () => {
+
+    const navigate = useNavigate()
     const [Uname, setUname] = useState('')
     const [pass, setpass] = useState('')
     const [Type, setType] = useState(1)
@@ -115,6 +117,11 @@ const LogInSignUp = () => {
                         console.log('get............', JSON.stringify(res));
                         // setPastApp(res.DATA)
                         alert('login sucess')
+                        sessionStorage.setItem("MyObj", JSON.stringify({
+                            user: res?.uname,
+                            pass: res?.pass
+                        }));
+                        navigate('/')
                     } else {
                         alert(res.MESSAGE)
                     }
