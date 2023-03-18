@@ -114,14 +114,19 @@ const LogInSignUp = () => {
                 .then(res => {
                     console.log('get............', JSON.stringify(res));
                     if (res.SUCCESS) {
-                        console.log('get............', JSON.stringify(res));
+                        // console.log('get............', JSON.stringify(res));
                         // setPastApp(res.DATA)
                         alert('login sucess')
                         sessionStorage.setItem("MyObj", JSON.stringify({
-                            user: res?.uname,
-                            pass: res?.pass
+                            user: res.DATA?.user,
+                            pass: res.DATA?.pass
                         }));
-                        navigate('/')
+                        console.log('MyObj... ', {
+                            user: res.DATA?.user,
+                            pass: res.DATA?.pass
+                        });
+
+                        navigate('/HomePage')
                     } else {
                         alert(res.MESSAGE)
                     }

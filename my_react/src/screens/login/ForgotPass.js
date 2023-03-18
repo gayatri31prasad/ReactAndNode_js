@@ -25,11 +25,12 @@ function ForgotPass(props) {
                 style={{}}
                 onClick={() => {
                     sessionStorage.removeItem("MyObj")
+                    sessionStorage.removeItem("isLiggedIn")
                     navigate('/')
                 }}>
                 delete
             </button>
-        </div>
+        </div >
     );
 }
 
