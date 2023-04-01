@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
-import BG from '../image/BG.jpg';
+// import BG from '../image/BG.jpg';
 
 const HomePage = () => {
     const navigate = useNavigate()
@@ -12,7 +12,7 @@ const HomePage = () => {
                 // width: '100%',
                 display: 'flex',
                 // background: `url(${BG})`,
-                background: `url(${'https://img.uhdpaper.com/wallpaper/sports-car-futuristic-mountain-sunset-scenery-digital-art-537@0@i-preview.jpg?dl'})`,
+                background: `url(${'https://img.uhdpaper.com/wallpaper/sports-car-futuristic-mountain-sunset-scenery-digital-art-537@0@i-preview.jpg?dl'}) no-repeat center center fixed`,
                 backgroundRepeat: 'no-repeat',
                 justifyContent: 'center',
                 backgroundSize: 'cover',
@@ -25,9 +25,10 @@ const HomePage = () => {
             <button
                 style={{ alignSelf: 'center' }}
                 onClick={() => {
-                    let data = JSON.parse(sessionStorage.getItem("MyObj"))
+                    let data = JSON.parse(localStorage.getItem("MyObj"))
                     // console.log('Data ....... ', data?.pass);
                     navigate('/')
+                    // window.location.reload()
                 }}>
                 Nave Home
             </button>
@@ -35,8 +36,9 @@ const HomePage = () => {
             <button
                 style={{ alignSelf: 'center' }}
                 onClick={() => {
-                    sessionStorage.removeItem("MyObj")
+                    localStorage.removeItem("MyObj")
                     navigate('/')
+                    window.location.reload()
                 }}>
                 removeItem
             </button>

@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors')
 const app = express();
+const fs = require('fs');
 app.use(express.json()) //pares json data
 app.use(express.urlencoded({ extended: true })) //parse url and encoded data
 const port = 8082;
@@ -37,6 +38,26 @@ app.post('/LogIn', (req, res) => {
         }
     } else {
         res.send({ SUCCESS: false, MESSAGE: 'No data recive' })
+    }
+})
+
+app.post('/SignIn', async (req, res) => {
+    try {
+        let data = req?.body
+        let nsignin = []
+        fs.readFile('LoginData.json', function (err, data) {
+            if (err) throw err;
+            nsignin = [...data]
+        });
+
+        nsignin.push({ ...data })
+
+        fs.writeFile('LoginData.json', JSON.stringify([...nsignin]), function (err) {
+            if (err) throw err;
+            console.log('Saved!');
+        });
+    } catch (error) {
+        console.log('error.....', error);
     }
 })
 

@@ -1,4 +1,4 @@
-import { BrowserRouter, Navigate, Route, Routes, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import Loginstack from './navigation/Loginstack';
 import ForgotPass from './screens/login/ForgotPass';
 import { useEffect, useState } from 'react';
@@ -10,11 +10,14 @@ function App(props) {
   const [MyObj, setMyObj] = useState()
   const [isLiggedIn, setisLiggedIn] = useState({ login: false })
   const [Token, setToken] = useState()
+  // const loc = useLocation()
+
+  // window.location.reload()
 
   useEffect(() => {
     try {
-      let obj = JSON.parse(sessionStorage.getItem("MyObj"))
-      let token = JSON.parse(sessionStorage.getItem("Token"))
+      let obj = JSON.parse(localStorage.getItem("MyObj"))
+      let token = JSON.parse(localStorage.getItem("Token"))
       console.log('obj... ', obj);
       if (obj?.user != null) {
         setMyObj(obj);
@@ -28,7 +31,7 @@ function App(props) {
     }
   }, [])
 
-  console.log('isLiggedIn......', isLiggedIn);
+  // console.log('isLiggedIn......', isLiggedIn);
 
   return (
     <BrowserRouter>

@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 // import { FaBeer } from 'react-icons/fa';
-import { AiOutlineUserAdd, AiFillGooglePlusCircle, AiFillFacebook, AiFillTwitterCircle, AiOutlineUser, AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
+import * as Icon from 'react-icons/ai';
+import { useClosestMedia } from './MediaFile'
 
 // const img = `https://cdn.pixabay.com/photo/2016/08/11/23/48/mountains-1587287_960_720.jpg`
 
@@ -49,11 +50,11 @@ const PasswordInput = ({
                 onChange={onChange} />
             {Show ?
                 <button style={eyeBtn} onClick={() => { setShow(!Show) }}>
-                    <AiOutlineEye style={eyeSty} />
+                    <Icon.AiOutlineEye style={eyeSty} />
                 </button>
                 :
                 <button style={eyeBtn} onClick={() => { setShow(!Show) }}>
-                    <AiOutlineEyeInvisible style={eyeSty} />
+                    <Icon.AiOutlineEyeInvisible style={eyeSty} />
                 </button>}
         </div>)
 }
@@ -92,6 +93,19 @@ const LogInSignUp = () => {
         // },
     }
 
+    useEffect(() => {
+        try {
+            let obj = JSON.parse(localStorage.getItem("MyObj"))
+            // let token = JSON.parse(localStorage.getItem("Token"))
+            // console.log('obj... ', obj);
+            if (obj?.user != null) {
+                navigate('/HomePage')
+            }
+        } catch (err) {
+            console.log('err......', err);
+        }
+    }, [])
+
     const userlogin = () => {
         try {//http://172.20.1.68:3000/
 
@@ -108,8 +122,7 @@ const LogInSignUp = () => {
                     // Authorization: 'Bearer ' + token,
                 },
                 body: JSON.stringify(data)
-            },
-            )
+            })
                 .then(response => response.json())
                 .then(res => {
                     console.log('get............', JSON.stringify(res));
@@ -117,7 +130,7 @@ const LogInSignUp = () => {
                         // console.log('get............', JSON.stringify(res));
                         // setPastApp(res.DATA)
                         alert('login sucess')
-                        sessionStorage.setItem("MyObj", JSON.stringify({
+                        localStorage.setItem("MyObj", JSON.stringify({
                             user: res.DATA?.user,
                             pass: res.DATA?.pass
                         }));
@@ -162,13 +175,13 @@ const LogInSignUp = () => {
                     margin: 'auto'
                 }}>
                 <button style={{ ...btn }} onClick={() => { }}>
-                    <AiFillGooglePlusCircle style={{ fontSize: 70, color: '#FED43A' }} />
+                    <Icon.AiFillGooglePlusCircle style={{ fontSize: 70, color: '#FED43A' }} />
                 </button>
                 <button style={{ ...btn }} onClick={() => { }}>
-                    <AiFillFacebook style={{ fontSize: 60, color: '#2B478B', backgroundColor: '#FFF', borderRadius: '100px' }} />
+                    <Icon.AiFillFacebook style={{ fontSize: 60, color: '#2B478B', backgroundColor: '#FFF', borderRadius: '100px' }} />
                 </button>
                 <button style={{ ...btn }} onClick={() => { }}>
-                    <AiFillTwitterCircle style={{ fontSize: 70, color: '#71daf5' }} />
+                    <Icon.AiFillTwitterCircle style={{ fontSize: 70, color: '#71daf5' }} />
                 </button>
             </div>
         </div>)
@@ -184,8 +197,8 @@ const LogInSignUp = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                // background: `url(${'https://cdn.pixabay.com/photo/2016/08/11/23/48/mountains-1587287_960_720.jpg'})`,
-                background: `url(${'https://img.uhdpaper.com/wallpaper/sports-car-futuristic-mountain-sunset-scenery-digital-art-537@0@i-preview.jpg?dl'})`,
+                // background: `url(${'https://cdn.pixabay.com/photo/2016/08/11/23/48/mountains-1587287_960_720.jpg'}) no-repeat center center fixed`,
+                background: `url(${'https://img.uhdpaper.com/wallpaper/sports-car-futuristic-mountain-sunset-scenery-digital-art-537@0@i-preview.jpg?dl'}) no-repeat center center fixed`,
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: 'cover',
             }}>
@@ -222,7 +235,7 @@ const LogInSignUp = () => {
             {Type === 1 ? (
                 <div style={CardStyle}>
                     <p style={{ fontFamily: 'fantasy', fontSize: 46, color: '#fff ', margin: '0px' }}>LogIn </p>
-                    <AiOutlineUser style={{ fontSize: 100, color: '#fff' }} />
+                    <Icon.AiOutlineUser style={{ fontSize: 100, color: '#fff' }} />
                     {/* <img style={{ marginBottom: 10 }} src={'../Image/nature.jpg'} alt="Logo" /> */}
                     <br />
                     <input
@@ -264,7 +277,7 @@ const LogInSignUp = () => {
                 :
                 <div style={CardStyle}>
                     <p style={{ fontFamily: 'fantasy', fontSize: 46, color: '#fff ', margin: '0px' }}>SignUp</p>
-                    <AiOutlineUserAdd style={{ fontSize: 100, color: '#fff' }} />
+                    <Icon.AiOutlineUserAdd style={{ fontSize: 100, color: '#fff' }} />
                     <div>
                         <input
                             placeholder='UserName'
@@ -303,6 +316,16 @@ const LogInSignUp = () => {
                         }}>SIGNUP</button>
                     <OrComp />
                 </div>}
+            <p style={{
+                // '@media (max-width: 500px)': {
+                //     display: 'none',
+                // },
+                // fontSize: 30,
+                '@media screen and (minWidth: 0px) and (maxWidth: 700px) ': {
+                    // color: '#FFF',
+                    display: 'none',
+                },
+            }}>{useClosestMedia()}</p>
         </div >
     )
 }
