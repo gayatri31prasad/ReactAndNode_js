@@ -1,47 +1,63 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import HomeBase from './HomeBase';
 // import BG from '../image/BG.jpg';
 
 const HomePage = () => {
     const navigate = useNavigate()
+    const [showDrower, setshowDrower] = useState(false)
+
     return (
         <div
             style={{
-                backgroundColor: '#frfrfr',
+                backgroundColor: '#fff',
                 height: '100vh',
                 // width: '100%',
                 display: 'flex',
                 // background: `url(${BG})`,
                 background: `url(${'https://img.uhdpaper.com/wallpaper/sports-car-futuristic-mountain-sunset-scenery-digital-art-537@0@i-preview.jpg?dl'}) no-repeat center center fixed`,
-                backgroundRepeat: 'no-repeat',
-                justifyContent: 'center',
                 backgroundSize: 'cover',
-                paddingLeft: 20,
-                paddingRight: 20,
+                // backgroundRepeat: 'no-repeat',
+                // justifyContent: 'center',
+                // paddingLeft: 20,
+                // paddingRight: 20,
                 flexDirection: 'column'
             }}>
-            <p style={{ fontFamily: 'fantasy', fontSize: 46, color: '#fff', margin: '0px', textAlign: 'center', marginBottom: 20 }}>HomePage</p>
-
-            <button
-                style={{ alignSelf: 'center' }}
-                onClick={() => {
-                    let data = JSON.parse(localStorage.getItem("MyObj"))
-                    // console.log('Data ....... ', data?.pass);
-                    navigate('/')
-                    // window.location.reload()
+            <div
+                style={{
+                    display: 'flex',
+                    height: 60,
+                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                    justifyContent: 'space-between',
+                    paddingRight: 20,
+                    paddingLeft: 20,
                 }}>
-                Nave Home
-            </button>
-            <br />
-            <button
-                style={{ alignSelf: 'center' }}
-                onClick={() => {
-                    localStorage.removeItem("MyObj")
-                    navigate('/')
-                    window.location.reload()
+                <button
+                    style={{ alignSelf: 'center', backgroundColor: 'transparent', border: '0px' }}
+                    onClick={() => {
+                        setshowDrower(!showDrower)
+                    }}>
+                    Open D
+                </button>
+                <div>
+                    <p>hellow</p>
+                </div>
+            </div>
+            <div
+                style={{
+                    display: 'flex',
                 }}>
-                removeItem
-            </button>
+                {showDrower && (
+                    <div
+                        style={{
+                            backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                            paddingRight: 20,
+                            paddingLeft: 20,
+                        }}>
+                        <p>Drower</p>
+                    </div>)}
+                <HomeBase />
+            </div>
         </div>
     )
 }
